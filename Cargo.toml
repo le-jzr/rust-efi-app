@@ -1,0 +1,7 @@
+[package]
+name = "efi-app"
+version = "0.1.0"
+authors = ["jzr"]
+
+[dependencies]
+efi-types = { path = "../efi-types-x86_64", git = "https://github.com/le-jzr/rust-efi-types.git" }
