@@ -1,6 +1,7 @@
 use efi_types;
+use core;
 
-use protocol::{ Color, Guid, Status, Result, status_to_result, status_to_status };
+use protocol::{ Color, Guid, Status, Result, Error, status_to_result, status_to_status };
 
 use core::convert::TryFrom;
 use core::fmt;
@@ -303,6 +304,13 @@ impl Protocol {
     ///
     pub fn enable_cursor(&mut self, visible_cursor: bool) -> Result<()> {
         unimplemented!()
+    }
+
+    pub fn output_bytes(&mut self, b: &[u8]) -> Result<Status> {
+        match core::str::from_utf8(b) {
+            Ok(s) => self.output_string(s),
+            Err(_) => Err(Error::invalid_parameter()),
+        }
     }
 
     /// Writes a string to the output device.

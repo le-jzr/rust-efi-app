@@ -28,6 +28,13 @@ pub struct Error {
     code: usize,
 }
 
+impl Error {
+    pub fn invalid_parameter() -> Error {
+        // FIXME
+        Error { code: 2 }
+    }
+}
+
 #[repr(u8)]
 pub enum Color {
     Black = 0x00,

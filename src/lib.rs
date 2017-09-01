@@ -1,6 +1,5 @@
 #![feature(alloc)]
 #![feature(allocator_api)]
-#![feature(shared)]
 #![feature(const_fn)]
 #![feature(try_from)]
 
@@ -43,13 +42,13 @@ impl Status {
     }
 
     pub fn load_error() -> Self {
-        let EFI_LOAD_ERROR: efi_types::EFI_STATUS = if mem::size_of::<efi_types::EFI_STATUS>() == 4 {
+        let efi_load_error: efi_types::EFI_STATUS = if mem::size_of::<efi_types::EFI_STATUS>() == 4 {
             0x80000001
         } else {
             0x8000000000000001 as efi_types::EFI_STATUS
         };
 
-        Status(EFI_LOAD_ERROR)
+        Status(efi_load_error)
     }
 }
 
